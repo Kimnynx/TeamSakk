@@ -1,1 +1,469 @@
- <!DOCTYPE html> <html> <head> <title>Mi Página Web</title> </head> <body> <h1>¡Hola, mundo!</h1> <p>Bienvenido a mi página web en GitHub Pages.</p> </body> </html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zona de Afiliados</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f5f5;
+      color: #111;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 16px;
+    }
+
+    /* LOGO */
+    .logo-wrap {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .logo-box {
+      display: inline-block;
+      border: 3px solid #111;
+      padding: 18px 64px;
+      border-radius: 12px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: #fff;
+    }
+
+    /* ZONA DE AFILIADOS */
+    .affiliates-bar {
+      border: 3px solid #111;
+      border-radius: 12px;
+      padding: 14px 20px;
+      text-align: center;
+      margin-bottom: 36px;
+      background: #fff;
+    }
+    .affiliates-bar .label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .affiliates-icons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .affiliate-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: #fff;
+      transition: all 0.2s ease;
+    }
+    .affiliate-icon:hover {
+      border-color: #111;
+      transform: scale(1.1);
+    }
+    .affiliate-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #111;
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    /* SECCIONES DE IMÁGENES */
+    .section-images {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Imagen rectangular (botón ficha persona) */
+    .img-rect {
+      width: 180px;
+      height: 260px;
+      border: 3px solid #111;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: #fff;
+      transition: all 0.2s ease;
+      overflow: hidden;
+    }
+    .img-rect:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    .img-rect .placeholder {
+      text-align: center;
+      color: #666;
+    }
+    .img-rect .placeholder svg {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 8px;
+      stroke: #999;
+      fill: none;
+      stroke-width: 1.5;
+    }
+    .img-rect .placeholder span {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    /* Imagen cuadrada (botón video) */
+    .img-square {
+      width: 110px;
+      height: 110px;
+      border: 3px solid #111;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: #fff;
+      transition: all 0.2s ease;
+    }
+    .img-square:hover {
+      transform: scale(1.08);
+      background: #f0f0f0;
+    }
+    .img-square svg {
+      width: 40px;
+      height: 40px;
+      stroke: #111;
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    /* TÍTULOS */
+    .section-title {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .section-title h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    /* FOOTER / CRÉDITOS */
+    .credits-box {
+      border: 3px solid #111;
+      border-radius: 12px;
+      padding: 24px 28px;
+      background: #fff;
+    }
+    .credits-box .credits-label {
+      text-align: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .credits-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .credits-col h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #111;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .credits-col ul {
+      list-style: none;
+      padding: 0;
+    }
+    .credits-col li {
+      font-size: 13px;
+      color: #555;
+      padding: 3px 0;
+    }
+
+    /* MODALES */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.55);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 16px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 28px;
+      max-width: 460px;
+      width: 100%;
+      border: 2px solid #111;
+      position: relative;
+      animation: modalIn 0.25s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.96); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px; right: 16px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #888;
+      line-height: 1;
+    }
+    .modal-close:hover { color: #111; }
+    .modal-card h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0 0 14px 0;
+      letter-spacing: 1px;
+    }
+    .modal-card p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #444;
+      margin: 0;
+    }
+    .video-placeholder {
+      width: 100%;
+      height: 220px;
+      background: #e8e8e8;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .video-placeholder svg {
+      width: 56px;
+      height: 56px;
+      fill: #111;
+      stroke: none;
+    }
+    .btn-external {
+      display: inline-block;
+      padding: 12px 28px;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: opacity 0.2s ease;
+    }
+    .btn-external:hover { opacity: 0.8; }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .credits-grid { grid-template-columns: repeat(2, 1fr); }
+      .img-rect { width: 140px; height: 200px; }
+      .img-square { width: 80px; height: 80px; }
+      .section-title h2 { font-size: 22px; }
+    }
+  </style>
+<base target="_blank">
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- LOGO -->
+    <div class="logo-wrap">
+      <div class="logo-box">Logo de la empresa</div>
+    </div>
+
+    <!-- ZONA DE AFILIADOS -->
+    <div class="affiliates-bar">
+      <div class="label">Zona de afiliados</div>
+      <div class="affiliates-icons">
+        <div class="affiliate-icon" title="Propietario 1">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+        </div>
+        <div class="affiliate-icon" title="Propietario 2">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+        </div>
+        <div class="affiliate-icon" title="Propietario 3">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 1: IMÁGENES RECTANGULARES -->
+    <div class="section-images">
+      <div class="img-rect" onclick="openPersonModal('Persona 1', 'Descripción detallada de la primera persona. Aquí va toda la información relevante sobre su perfil, experiencia profesional, logros destacados y cualquier otro dato que sea de interés para los visitantes del sitio.')">
+        <div class="placeholder">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <br><span>IMAGEN</span>
+        </div>
+      </div>
+      <div class="img-rect" onclick="openPersonModal('Persona 2', 'Descripción detallada de la segunda persona. Información sobre su trayectoria profesional, habilidades destacadas, proyectos en los que ha participado y su rol dentro de la organización.')">
+        <div class="placeholder">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <br><span>IMAGEN</span>
+        </div>
+      </div>
+      <div class="img-rect" onclick="openPersonModal('Persona 3', 'Descripción detallada de la tercera persona. Datos sobre su formación académica, certificaciones, áreas de especialización y proyectos realizados a lo largo de su carrera.')">
+        <div class="placeholder">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <br><span>IMAGEN</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TÍTULO SECCIÓN 1 -->
+    <div class="section-title">
+      <h2>Texto de título</h2>
+    </div>
+
+    <!-- SECCIÓN 2: IMÁGENES CUADRADAS -->
+    <div class="section-images">
+      <div class="img-square" onclick="openVideoModal('Clip de video 1')" title="Ver clip 1">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><polygon points="10,8 16,12 10,16"/></svg>
+      </div>
+      <div class="img-square" onclick="openVideoModal('Clip de video 2')" title="Ver clip 2">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><polygon points="10,8 16,12 10,16"/></svg>
+      </div>
+      <div class="img-square" onclick="openVideoModal('Clip de video 3')" title="Ver clip 3">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><polygon points="10,8 16,12 10,16"/></svg>
+      </div>
+      <div class="img-square" onclick="openVideoModal('Clip de video 4')" title="Ver clip 4">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><polygon points="10,8 16,12 10,16"/></svg>
+      </div>
+    </div>
+
+    <!-- TÍTULO SECCIÓN 2 -->
+    <div class="section-title">
+      <h2>Texto de título</h2>
+    </div>
+
+    <!-- CRÉDITOS / FOOTER -->
+    <div class="credits-box">
+      <div class="credits-label">Texto de contenido / créditos</div>
+      <div class="credits-grid">
+        <div class="credits-col">
+          <h4>Producción</h4>
+          <ul>
+            <li>Crédito A</li>
+            <li>Crédito B</li>
+            <li>Crédito C</li>
+            <li>Crédito D</li>
+          </ul>
+        </div>
+        <div class="credits-col">
+          <h4>Dirección</h4>
+          <ul>
+            <li>Crédito E</li>
+            <li>Crédito F</li>
+            <li>Crédito G</li>
+            <li>Crédito H</li>
+          </ul>
+        </div>
+        <div class="credits-col">
+          <h4>Diseño</h4>
+          <ul>
+            <li>Crédito I</li>
+            <li>Crédito J</li>
+            <li>Crédito K</li>
+            <li>Crédito L</li>
+          </ul>
+        </div>
+        <div class="credits-col">
+          <h4>Agradecimientos</h4>
+          <ul>
+            <li>Crédito M</li>
+            <li>Crédito N</li>
+            <li>Crédito O</li>
+            <li>Crédito P</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MODAL: FICHA DE PERSONA -->
+  <div class="modal-overlay" id="personModal" onclick="if(event.target===this)closePersonModal()">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closePersonModal()">&times;</button>
+      <h3 id="personName">Nombre</h3>
+      <p id="personDesc">Descripción</p>
+    </div>
+  </div>
+
+  <!-- MODAL: REPRODUCTOR DE VIDEO -->
+  <div class="modal-overlay" id="videoModal" onclick="if(event.target===this)closeVideoModal()">
+    <div class="modal-card" style="max-width: 520px; text-align: center;">
+      <button class="modal-close" onclick="closeVideoModal()">&times;</button>
+      <h3 id="videoTitle">Reproductor</h3>
+      <div class="video-placeholder">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+      <a href="https://ejemplo.com" target="_blank" class="btn-external">Ver en sitio externo →</a>
+    </div>
+  </div>
+
+  <script>
+    function openPersonModal(name, desc) {
+      document.getElementById('personName').textContent = name;
+      document.getElementById('personDesc').textContent = desc;
+      document.getElementById('personModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closePersonModal() {
+      document.getElementById('personModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function openVideoModal(title) {
+      document.getElementById('videoTitle').textContent = title;
+      document.getElementById('videoModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeVideoModal() {
+      document.getElementById('videoModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closePersonModal();
+        closeVideoModal();
+      }
+    });
+  </script>
+
+</body>
+</html>
